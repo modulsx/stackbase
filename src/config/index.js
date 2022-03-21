@@ -10,7 +10,6 @@ const config = {
     APP_SESSION_SECRET: process.env.APP_SESSION_SECRET || null,
     APP_USERNAME: process.env.APP_USERNAME || null,
     APP_PASSWORD: process.env.APP_PASSWORD || null,
-    DEPLOYMENTS_ENABLED: process.env.DEPLOYMENTS_ENABLED || false,
     DEPLOYMENTS_LOGS_DIR: process.env.DEPLOYMENTS_LOGS_DIR || path.join(process.cwd(), 'logs'),
     DEPLOYMENTS_CONFIG_PATH: process.env.DEPLOYMENTS_CONFIG_PATH || path.join(process.cwd(), 'deployments.config.json'),
     APP_DEFAULTS: {

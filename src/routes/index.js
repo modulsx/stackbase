@@ -10,6 +10,7 @@ const { convertAnsiLogsToCssLines } = require('../utils/ansi.util')
 const { findAllDeploymentApps, findOneDeploymentApp } = require('../providers/gitops/api')
 const { runDeployment } = require('../providers/gitops/runner')
 const { validateWebhook } = require('../providers/gitops/webhook-handler')
+const { webhookPingEvent} = require('../middlewares/webhook')
 
 const loginRateLimiter = RateLimit.middleware({
     interval: 2*60*1000, // 2 minutes
@@ -221,7 +222,7 @@ router.post('/api/deployments/trigger/:appName', webhookRateLimiter, async (ctx)
     }
 });
 
-router.post('/api/deployments/hooks/:appName', webhookRateLimiter, async (ctx) => {
+router.post('/api/deployments/hooks/:appName', webhookRateLimiter, webhookPingEvent, async (ctx) => {
     const { appName } = ctx.params
     console.log('Recived Webhook For', appName)
     try{

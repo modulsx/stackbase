@@ -7,9 +7,6 @@ const deployNow = async (appName) => {
         force: true
     }
     try {
-        if(!config.DEPLOYMENTS_ENABLED){
-            console.error('Deployments are disabled. Please add DEPLOYMENTS_ENABLED=true to .env')
-        }
         if(!appName){
             console.error('Error: missing required argument name|all')
         }

@@ -25,9 +25,7 @@ if(!config.APP_SESSION_SECRET){
     config.APP_SESSION_SECRET = randomString
 }
 
-if(config.DEPLOYMENTS_ENABLED){
-    runDeploymentsSetup()
-}
+runDeploymentsSetup()
 
 // Create App Instance
 const app = new Koa();
