@@ -1,4 +1,4 @@
-### PM2 WebUI
+### Stackbase
 Opensource Alternative to PM2 Plus
 
 ##### FEATURES
@@ -9,8 +9,8 @@ Opensource Alternative to PM2 Plus
 
 ##### USAGE
 ```
-git clone https://github.com/suryamodulus/pm2-webui
-cd pm2-webui
+git clone https://github.com/suryamodulus/stackbase
+cd stackbase
 npm install
 cp env.example .env
 npm run setup-admin-user (Required for login)
@@ -20,10 +20,5 @@ npm start
 ```
 npm run start:dev
 ```
-##### SCREENSHOTS
-![PM2 Webui Login](/screenshots/login.png?raw=true "PM2 WebUI Login")
-![PM2 Webui Dashboard](/screenshots/dashboard.png?raw=true "PM2 WebUI Dashboard")
-![PM2 Webui App](/screenshots/app.png?raw=true "PM2 WebUI App")
-
 ##### LICENSE
 MIT - Copyright (c) 2022 Surya T
