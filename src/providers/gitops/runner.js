@@ -47,7 +47,7 @@ const runDeployment = async (app, options = {}) => {
                     await execCommand(`pm2 start --cwd ${cwd} --name ${app.name} ${command}`, { logger: logger })
                 }
                 else{
-                    await execCommand(`pm2 start --cwd ${cwd} --name ${app.name} ${command} --interpreter bash`, { logger: logger })
+                    await execCommand(`pm2 start --cwd ${cwd} --name ${app.name} --interpreter bash ${command}`, { logger: logger })
                 }
             }
         }
