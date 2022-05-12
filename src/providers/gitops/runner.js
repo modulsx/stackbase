@@ -42,8 +42,13 @@ const runDeployment = async (app, options = {}) => {
             }
             else{
                 logger.log('Starting New PM2 App')
-                const command = app.start_command.replace(/\ /,' -- ')
-                await execCommand(`pm2 start --cwd ${cwd} --name ${app.name} ${command}`, { logger: logger })
+                const command = app.start_command.trim().replace(/\ /,' -- ')
+                if(command.startsWith('npm')){
+                    await execCommand(`pm2 start --cwd ${cwd} --name ${app.name} ${command}`, { logger: logger })
+                }
+                else{
+                    await execCommand(`pm2 start --cwd ${cwd} --name ${app.name} ${command} --interpreter bash`, { logger: logger })
+                }
             }
         }
         logger.success('*** Deployment Completed ***')
