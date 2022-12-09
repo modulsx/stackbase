@@ -43,14 +43,14 @@ const runDeployment = async (app, options = {}) => {
             else{
                 logger.log('Starting New PM2 App')
                 let command = app.start_command.trim()
-                let execCommand = `pm2 start --cwd ${cwd} --name ${app.name} ${command}`
+                let pm2Command = `pm2 start --cwd ${cwd} --name ${app.name} ${command}`
                 if(command.startsWith('npm')){
-                    execCommand = `pm2 start --cwd ${cwd} --name ${app.name} ${command.replace(/\ /,' -- ')}`
+                    pm2Command = `pm2 start --cwd ${cwd} --name ${app.name} ${command.replace(/\ /,' -- ')}`
                 }
                 else if(command.startsWith('yarn') || command.startsWith('pnpm')){
-                    execCommand = `pm2 start --cwd ${cwd} --name ${app.name} --interpreter bash ${command.replace(/\ /,' -- ')}`
+                    pm2Command = `pm2 start --cwd ${cwd} --name ${app.name} --interpreter bash ${command.replace(/\ /,' -- ')}`
                 }
-                await execCommand(`${execCommand}`, { logger: logger })
+                await execCommand(`${pm2Command}`, { logger: logger })
             }
         }
         logger.success('*** Deployment Completed ***')
