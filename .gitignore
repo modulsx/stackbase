@@ -121,3 +121,4 @@ dist
 # Deployments
 .deployments
 deployments.config.json
+databases.config.json

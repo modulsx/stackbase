@@ -1,8 +1,0 @@
-{
-    "databases": [
-        {
-            "id": "4e9650c4-8afb-4e6c-b835-42831da87958",
-            "database_url": "postgres://sstmxhvl:mogf8xUd_EhsyVV391EmODiNcfH1it-e@satao.db.elephantsql.com/sstmxhvl"
-        }
-    ]
-}
