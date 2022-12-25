@@ -11,20 +11,29 @@ const readLogsReverse = async (params) => {
       console.error('Input params error : ', {filePath, linesPerRequest, endBytes})
       return resolve({lines: [], nextKey: -1, linesPerRequest: config.APP_DEFAULTS.LINES_PER_REQUEST})
     }
-    const fileSize = fs.statSync(filePath).size
-    const end = endBytes && endBytes >= 0? endBytes : fileSize
-    const dataSize = linesPerRequest * 200
-    const start = Math.max(0, end - dataSize);
+    const fileSize = fs.statSync(filePath).size - 1
+    const end = endBytes && endBytes !== NaN && endBytes > 0? endBytes : fileSize
+    const dataSize = (linesPerRequest * 200)
+    const start = Math.max(0, end - dataSize + 1 );
+    console.log('Poles : ', start, end)
+    console.log('Diff : ',end - start)
     let data = '';
-    const logFile = fs.createReadStream(filePath, {start : start, end});
-    logFile.on('data', function(chunk) { data += chunk.toString(); });
+    const logFile = fs.createReadStream(filePath, {start, end });
+    logFile.on('data', function(chunk) {
+      data += chunk.toString(); 
+    });
     logFile.on('end', function() {
-      data = data.split('\n')
+      // console.log(JSON.stringify(data))
+      console.log('Return : ',Buffer.byteLength(data, 'utf-8'))
+      const noLines = data.indexOf("\n") === -1
+      data = data.trim().split('\n')
       data = data.slice(-(linesPerRequest+1));
+      if(data.length > linesPerRequest){
+        data.shift()
+      }
       const sentDateSize = Buffer.byteLength(data.join('\n'), 'utf-8')
       const nextKey = (end - sentDateSize)
-      data.pop();
-      return resolve({lines: data, nextKey, linesPerRequest});
+      return resolve({lines: data, nextKey : nextKey, linesPerRequest, isSameLine: noLines });
     });
   })
 }
