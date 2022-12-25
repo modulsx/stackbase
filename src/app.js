@@ -4,6 +4,7 @@ const config = require('./config')
 const { setEnvDataSync } = require('./utils/env.util')
 const { generateRandomString } = require('./utils/random.util')
 const { runDeploymentsSetup } = require('./providers/gitops/setup')
+const { runDatabasesSetup } =require('./providers/database/setup')
 const path = require('path');
 const serve = require('koa-static');
 const render = require('koa-ejs');
@@ -26,6 +27,7 @@ if(!config.APP_SESSION_SECRET){
 }
 
 runDeploymentsSetup()
+runDatabasesSetup()
 
 // Create App Instance
 const app = new Koa();
@@ -36,8 +38,6 @@ app.keys = [config.APP_SESSION_SECRET];
 
 // Middlewares
 app.use(session(app));
-
-app.use(koaBody());
 
 app.use(helmet());
 
@@ -52,8 +52,10 @@ app.use((ctx, next) => {
     return next();
 });
 
-const router = require("./routes");
-app.use(router.routes());
+const mainRouter = require("./routes/index");
+const dbManagerRouter = require("./routes/db-manager");
+app.use(mainRouter.routes());
+app.use(dbManagerRouter.routes());
 
 render(app, {
     root: path.join(__dirname, 'views'),

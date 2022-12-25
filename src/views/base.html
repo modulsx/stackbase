@@ -26,8 +26,16 @@
               <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown" aria-label="Open user menu">
                 <span class="avatar avatar-sm" style="background-image: url(/assets/images/app/user.svg)"></span>
                 <div class="d-none d-xl-block ps-2">
-                  <div><%= USERNAME %></div>
+                  <div>
+                    <span><%= USERNAME %>
+                      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-down pt-1" width="44" height="44" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                      </svg>
+                    </span>
+                  </div>
                 </div>
+                
               </a>
               <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                 <a href="/logout" class="dropdown-item">
@@ -60,17 +68,30 @@
               <li class="nav-item <%= route === 'services'? 'active': '' %>">
                 <a class="nav-link" href="/services">
                   <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/star -->
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-apps" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                      <rect x="4" y="4" width="6" height="6" rx="1" />
-                      <rect x="4" y="14" width="6" height="6" rx="1" />
-                      <rect x="14" y="14" width="6" height="6" rx="1" />
-                      <line x1="14" y1="7" x2="20" y2="7" />
-                      <line x1="17" y1="4" x2="17" y2="10" />
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-stack-2" width="44" height="44" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                      <polyline points="12 4 4 8 12 12 20 8 12 4"></polyline>
+                      <polyline points="4 12 12 16 20 12"></polyline>
+                      <polyline points="4 16 12 20 20 16"></polyline>
                     </svg>
                   </span>
                   <span class="nav-link-title">
                     Services
+                  </span>
+                </a>
+              </li>
+              <li class="nav-item <%= route === 'db-manager'? 'active': '' %>">
+                <a class="nav-link" href="/db-manager">
+                  <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/star -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-database" width="44" height="44" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                      <ellipse cx="12" cy="6" rx="8" ry="3"></ellipse>
+                      <path d="M4 6v6a8 3 0 0 0 16 0v-6"></path>
+                      <path d="M4 12v6a8 3 0 0 0 16 0v-6"></path>
+                    </svg>
+                  </span>
+                  <span class="nav-link-title">
+                    DB Manager
                   </span>
                 </a>
               </li>

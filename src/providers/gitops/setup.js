@@ -18,5 +18,5 @@ const runDeploymentsSetup = () => {
 }
 
 module.exports = {
-    runDeploymentsSetup
+    runDeploymentsSetup,
 }

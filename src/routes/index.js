@@ -1,5 +1,6 @@
 const RateLimit = require('koa2-ratelimit').RateLimit;
 const router = require('@koa/router')();
+const koaBody = require('koa-body');
 const { listServices, describeService, reloadService, restartService, stopService } = require('../providers/pm2/api')
 const { validateAdminUser } = require('../services/admin.service')
 const { readLogsReverse } = require('../utils/read-logs.util')
@@ -23,6 +24,9 @@ const webhookRateLimiter = RateLimit.middleware({
     max: 100, // Maximum 100 requests for 1 minute
     prefixKey: '/deployments/hooks' // to allow the bdd to Differentiate the endpoint 
 });
+
+
+router.use(koaBody());
 
 router.get('/', async (ctx) => {
     return ctx.redirect('/login')
