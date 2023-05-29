@@ -15,8 +15,8 @@ const readLogsReverse = async (params) => {
     const end = endBytes && endBytes !== NaN && endBytes > 0? endBytes : fileSize
     const dataSize = (linesPerRequest * 200)
     const start = Math.max(0, end - dataSize + 1 );
-    console.log('Poles : ', start, end)
-    console.log('Diff : ',end - start)
+    // console.log('Poles : ', start, end)
+    // console.log('Diff : ',end - start)
     let data = '';
     const logFile = fs.createReadStream(filePath, {start, end });
     logFile.on('data', function(chunk) {
@@ -24,7 +24,7 @@ const readLogsReverse = async (params) => {
     });
     logFile.on('end', function() {
       // console.log(JSON.stringify(data))
-      console.log('Return : ',Buffer.byteLength(data, 'utf-8'))
+      // console.log('Return : ',Buffer.byteLength(data, 'utf-8'))
       const noLines = data.indexOf("\n") === -1
       data = data.trim().split('\n')
       data = data.slice(-(linesPerRequest+1));
